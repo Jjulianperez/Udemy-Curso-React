@@ -2,8 +2,25 @@ import { Header } from "./components/Header"
 import { Guitar } from "./components/Guitar"
 import { useState } from "react"
 import { db } from "./data/db";
+
 function App() {
-const [data, setData] = useState(db);
+const [data, setData] = useState(db); 
+const [cart, setCart] = useState([]); 
+
+  function addToCart (item){
+
+    const itemExists = cart.findIndex(guitar => guitar.id === item.id);
+    console.log(itemExists);
+    
+    if(itemExists >= 0){
+      console.log("Este elemento ya esta en el carrito");
+    }
+    else{
+      console.log('Se agrego al carrito');
+      setCart(prevCart => [prevCart,item]);
+    }
+  }
+
   return (
     <>
     <Header/>
@@ -16,6 +33,8 @@ const [data, setData] = useState(db);
               <Guitar
                 key={guitar.id}
                 guitar={guitar}
+                setCart={setCart}
+                addToCart={addToCart}
               />
             )
           })}

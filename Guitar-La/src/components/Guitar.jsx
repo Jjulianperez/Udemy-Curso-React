@@ -1,14 +1,7 @@
-import { useState } from "react"
 
 export const Guitar = ({guitar}) =>{
-    const {name, image,description,price, id} = guitar
-    const [cart,setCart] = useState(false)
+    const {name, image,description,price} = guitar
 
-    const handleClick = (id) =>{
-        setCart(!cart);
-        console.log(cart)
-        console.log(id)
-    }
 
     return(
         <div className="col-md-6 col-lg-4 my-4 row align-items-center">
@@ -22,7 +15,7 @@ export const Guitar = ({guitar}) =>{
                     <button 
                         type="button"
                         className="btn btn-dark w-100"
-                        onClick={()=> handleClick(id)}
+                        
                     >Agregar al Carrito</button>
                 </div>
         </div>
