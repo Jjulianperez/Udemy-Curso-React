@@ -2,17 +2,13 @@
 import React, { useState } from "react";
 import type {Product} from '../types'
 import { addProduct } from "../LocalStorage/SaveProducts";
+import {calculateTotalWithTax} from '../logic/CalcularTotal'
 
 
 const ProductComponent: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-
-  const calculateTotalWithTax = () => {
-    // 🚨 Viola SRP: lógica de impuestos metida dentro del componente
-    return products.reduce((acc, p) => acc + p.price * 1.21, 0);
-  };
 
   return (
     <div>
@@ -39,7 +35,7 @@ const ProductComponent: React.FC = () => {
         ))}
       </ul>
 
-      <p>Total con impuestos: {calculateTotalWithTax()}</p>
+      <p>Total con impuestos: {calculateTotalWithTax(products)}</p>
     </div>
   );
 };
